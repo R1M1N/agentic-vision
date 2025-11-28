@@ -1,0 +1,42 @@
+config:
+  cvat:
+    password: password
+    url: http://localhost:8080
+    username: admin
+  fiftyone:
+    mongodb: mongodb://localhost:27017
+    port: 5151
+  inference:
+    batch_size: 8
+    model_path: ./models
+    port: 8000
+  mlflow:
+    port: 5000
+    tracking_uri: http://localhost:5000
+  storage:
+    base_path: ./data
+    minio:
+      access_key: minioadmin
+      endpoint: localhost:9000
+      secret_key: minioadmin
+      secure: false
+    type: local
+  tracking:
+    algorithm: bytetrack
+    max_age: 30
+    min_hits: 3
+created_at: /home/siya/projects/agentic-vision
+description: Demo computer vision project
+name: demo_project
+stats:
+  annotations_count: 0
+  classes: []
+  total_files: 20
+  total_images: 20
+  total_videos: 0
+versions:
+- created_at: /home/siya/projects/agentic-vision
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0

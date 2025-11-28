@@ -1,0 +1,12 @@
+config:
+  storage:
+    base_path: ./test_data
+created_at: /workspace/opensupervision
+description: Test description
+name: test_project
+stats:
+  annotations_count: 0
+  classes: []
+  total_images: 0
+  total_videos: 0
+versions: []

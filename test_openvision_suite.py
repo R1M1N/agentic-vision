@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-🧪 OpenSupervision Comprehensive Test Suite
+🧪 Viseon Comprehensive Test Suite
 Step-by-step testing of all functionalities
 
-Run this to validate the entire opensupervision platform
+Run this to validate the entire viseon platform
 """
 
 import sys
@@ -16,8 +16,8 @@ from pathlib import Path
 # Add parent to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-class OpenSupervisionTestSuite:
-    """Complete test suite for OpenSupervision"""
+class ViseonTestSuite:
+    """Complete test suite for Viseon"""
     
     def __init__(self):
         self.passed = 0
@@ -65,7 +65,7 @@ class OpenSupervisionTestSuite:
                 print(f"     └─ {error[:100]}")
 
 # Initialize test suite
-suite = OpenSupervisionTestSuite()
+suite = ViseonTestSuite()
 
 # ============================================
 # PHASE 1: IMPORTS & ENVIRONMENT
@@ -74,32 +74,32 @@ suite = OpenSupervisionTestSuite()
 def test_1_import_core():
     """Test core module imports"""
     print("Importing core modules...")
-    from opensupervision.core.detections import Detections
-    from opensupervision.core.project import Project
+    from viseon.core.detections import Detections
+    from viseon.core.project import Project
     print("✅ Core imports successful")
 
 def test_2_import_training():
     """Test training module imports"""
     print("Importing training modules...")
-    from opensupervision.training.yolo_trainer import YOLOTrainer
+    from viseon.training.yolo_trainer import YOLOTrainer
     print("✅ Training imports successful")
 
 def test_3_import_tracking():
     """Test tracking module imports"""
     print("Importing tracking modules...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
+    from viseon.tracking.object_tracker import ObjectTracker
     print("✅ Tracking imports successful")
 
 def test_4_import_inference():
     """Test inference module imports"""
     print("Importing inference modules...")
-    from opensupervision.inference.server import InferenceServer
+    from viseon.inference.server import InferenceServer
     print("✅ Inference imports successful")
 
 def test_5_import_annotation():
     """Test annotation module imports"""
     print("Importing annotation modules...")
-    from opensupervision.annotation.cvat_integration import CVATAnnotate
+    from viseon.annotation.cvat_integration import CVATAnnotate
     print("✅ Annotation imports successful")
 
 # ============================================
@@ -109,7 +109,7 @@ def test_5_import_annotation():
 def test_6_detections_creation():
     """Test Detections object creation"""
     print("Creating Detections object...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     xyxy = np.array([[100, 120, 200, 180], [300, 250, 400, 350]])
     confidence = np.array([0.85, 0.92])
@@ -130,7 +130,7 @@ def test_6_detections_creation():
 def test_7_detections_filtering():
     """Test Detections filtering"""
     print("Testing Detections filtering...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     xyxy = np.array([[100, 120, 200, 180], [300, 250, 400, 350], [50, 50, 100, 100]])
     confidence = np.array([0.85, 0.92, 0.5])
@@ -153,7 +153,7 @@ def test_7_detections_filtering():
 def test_8_detections_merging():
     """Test Detections merging"""
     print("Testing Detections merging...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     det1 = Detections(
         xyxy=np.array([[100, 120, 200, 180]]),
@@ -175,7 +175,7 @@ def test_8_detections_merging():
 def test_9_detections_empty():
     """Test empty Detections"""
     print("Testing empty Detections...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     empty = Detections.empty()
     assert empty.is_empty()
@@ -185,7 +185,7 @@ def test_9_detections_empty():
 def test_10_detections_iou():
     """Test IoU calculation"""
     print("Testing IoU calculation...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     det1 = Detections(
         xyxy=np.array([[100, 100, 200, 200], [300, 300, 400, 400]]),
@@ -212,7 +212,7 @@ def test_10_detections_iou():
 def test_11_project_creation():
     """Test Project creation"""
     print("Creating Project...")
-    from opensupervision.core.project import Project
+    from viseon.core.project import Project
     
     config = {'storage': {'base_path': './test_projects'}}
     project = Project(
@@ -228,7 +228,7 @@ def test_11_project_creation():
 def test_12_project_stats():
     """Test Project statistics"""
     print("Getting Project stats...")
-    from opensupervision.core.project import Project
+    from viseon.core.project import Project
     
     config = {'storage': {'base_path': './test_projects'}}
     project = Project(
@@ -249,7 +249,7 @@ def test_12_project_stats():
 def test_13_tracker_creation():
     """Test ObjectTracker creation"""
     print("Creating ObjectTracker...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
+    from viseon.tracking.object_tracker import ObjectTracker
     
     config = {
         'algorithm': 'bytetrack',
@@ -264,7 +264,7 @@ def test_13_tracker_creation():
 def test_14_tracker_stats():
     """Test Tracker statistics"""
     print("Getting Tracker stats...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
+    from viseon.tracking.object_tracker import ObjectTracker
     
     config = {'algorithm': 'bytetrack'}
     tracker = ObjectTracker(config=config)
@@ -277,8 +277,8 @@ def test_14_tracker_stats():
 def test_15_tracker_update():
     """Test Tracker frame update"""
     print("Testing Tracker frame update...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
-    from opensupervision.core.detections import Detections
+    from viseon.tracking.object_tracker import ObjectTracker
+    from viseon.core.detections import Detections
     
     config = {'algorithm': 'bytetrack'}
     tracker = ObjectTracker(config=config)
@@ -305,7 +305,7 @@ def test_15_tracker_update():
 def test_16_trainer_creation():
     """Test YOLOTrainer creation"""
     print("Creating YOLOTrainer...")
-    from opensupervision.training.yolo_trainer import YOLOTrainer
+    from viseon.training.yolo_trainer import YOLOTrainer
     
     config = {'storage': {'base_path': './models'}}
     trainer = YOLOTrainer(config=config)
@@ -316,7 +316,7 @@ def test_16_trainer_creation():
 def test_17_trainer_config():
     """Test Trainer configuration"""
     print("Testing Trainer configuration...")
-    from opensupervision.training.yolo_trainer import YOLOTrainer
+    from viseon.training.yolo_trainer import YOLOTrainer
     
     config = {'storage': {'base_path': './models'}}
     trainer = YOLOTrainer(config=config)
@@ -331,7 +331,7 @@ def test_17_trainer_config():
 def test_18_inference_server_creation():
     """Test InferenceServer creation"""
     print("Creating InferenceServer...")
-    from opensupervision.inference.server import InferenceServer
+    from viseon.inference.server import InferenceServer
     
     config = {
         'inference': {
@@ -347,7 +347,7 @@ def test_18_inference_server_creation():
 def test_19_inference_config():
     """Test Inference configuration"""
     print("Testing Inference configuration...")
-    from opensupervision.inference.server import InferenceServer
+    from viseon.inference.server import InferenceServer
     
     config = {
         'inference': {
@@ -367,7 +367,7 @@ def test_19_inference_config():
 def test_20_cvat_creation():
     """Test CVAT integration creation"""
     print("Creating CVAT integration...")
-    from opensupervision.annotation.cvat_integration import CVATAnnotate
+    from viseon.annotation.cvat_integration import CVATAnnotate
     
     config = {
         'url': 'http://localhost:8080',
@@ -386,7 +386,7 @@ def test_20_cvat_creation():
 def test_21_end_to_end_detection():
     """Test end-to-end detection pipeline"""
     print("Testing end-to-end detection pipeline...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     # Step 1: Create detections
     detections = Detections(
@@ -406,8 +406,8 @@ def test_21_end_to_end_detection():
 def test_22_end_to_end_tracking():
     """Test end-to-end tracking pipeline"""
     print("Testing end-to-end tracking pipeline...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
-    from opensupervision.core.detections import Detections
+    from viseon.tracking.object_tracker import ObjectTracker
+    from viseon.core.detections import Detections
     
     # Step 1: Create tracker
     tracker = ObjectTracker(config={'algorithm': 'bytetrack'})
@@ -431,8 +431,8 @@ def test_22_end_to_end_tracking():
 def test_23_end_to_end_project_workflow():
     """Test end-to-end project workflow"""
     print("Testing end-to-end project workflow...")
-    from opensupervision.core.project import Project
-    from opensupervision.core.detections import Detections
+    from viseon.core.project import Project
+    from viseon.core.detections import Detections
     
     # Step 1: Create project
     config = {'storage': {'base_path': './test_projects'}}
@@ -466,7 +466,7 @@ def test_23_end_to_end_project_workflow():
 def test_24_detections_performance():
     """Test Detections performance with large datasets"""
     print("Testing Detections performance...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     # Create large number of detections
     n_detections = 1000
@@ -490,8 +490,8 @@ def test_24_detections_performance():
 def test_25_tracking_performance():
     """Test Tracking performance"""
     print("Testing Tracking performance...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
-    from opensupervision.core.detections import Detections
+    from viseon.tracking.object_tracker import ObjectTracker
+    from viseon.core.detections import Detections
     
     tracker = ObjectTracker(config={'algorithm': 'bytetrack'})
     
@@ -597,7 +597,7 @@ def main():
     # Final status
     print("\n" + "="*70)
     if suite.failed == 0:
-        print("✅ ALL TESTS PASSED! OpenSupervision is ready to use.")
+        print("✅ ALL TESTS PASSED! Viseon is ready to use.")
         print("="*70)
         return 0
     else:

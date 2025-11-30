@@ -1,7 +1,7 @@
 config:
   storage:
     base_path: demo_workspace/data
-created_at: /home/siya/projects/agentic-vision
+created_at: /workspace
 description: End-to-end demonstration project
 name: demo_project
 stats:

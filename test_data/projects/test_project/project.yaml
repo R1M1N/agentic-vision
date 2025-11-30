@@ -1,7 +1,7 @@
 config:
   storage:
     base_path: ./test_data
-created_at: /home/siya/projects/agentic-vision
+created_at: /workspace
 description: Test description
 name: test_project
 stats:

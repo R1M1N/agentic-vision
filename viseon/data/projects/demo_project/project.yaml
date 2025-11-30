@@ -1,0 +1,16 @@
+config: {}
+created_at: /workspace/viseon
+description: End-to-end demonstration project
+name: demo_project
+stats:
+  annotations_count: 0
+  classes: []
+  total_files: 20
+  total_images: 20
+  total_videos: 0
+versions:
+- created_at: /workspace/viseon
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0

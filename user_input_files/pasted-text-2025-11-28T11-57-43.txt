@@ -1,0 +1,427 @@
+(vlm) siya@Siya:~/projects/agentic-vision$ python viseon/examples/complete_example.py 
+🚀 viseon - Complete Platform Example
+================================================================================
+This example demonstrates the entire viseon workflow
+including data management, training, inference, and tracking.
+================================================================================
+
+============================================================
+EXAMPLE 1: Basic viseon Workflow
+============================================================
+Creating sample data...
+Created 20 sample images in sample_data
+
+1. Initializing viseon platform...
+2. Creating project...
+   Project created: Project(name='demo_project', versions=0, files=0)
+3. Uploading data...
+   ✓ Data uploaded successfully
+   Files in project: 20
+4. Creating dataset version...
+   Version created: v1.0
+   Files in version: 0
+5. Project statistics:
+   Total files: 20
+   Project size: 6.72 MB
+   Versions: 1
+
+============================================================
+EXAMPLE 2: Detections System
+============================================================
+
+1. Creating sample detections...
+   Created detections: Detections(n=3, classes=['bicycle', 'person', 'car'])
+
+2. Filtering detections...
+   High confidence (>0.8): 2 detections
+   Car detections: 1 detections
+
+3. Merging detections...
+   Original: 3, After merge: 4
+
+4. IoU calculations...
+   IoU matrix shape: (4, 4)
+   Max IoU: 1.000
+
+5. Format conversions...
+   YOLO format: 4 detections
+   COCO format: 4 annotations
+
+============================================================
+EXAMPLE 3: CVAT Annotation Workflow
+============================================================
+
+1. CVAT Configuration...
+   CVAT configuration:
+     url: http://localhost:8080
+     username: admin
+     password: password
+
+2. Initializing CVAT annotator...
+   ✓ CVAT annotator available (would initialize)
+
+3. Creating annotation task...
+   Task configuration:
+     Images: 5
+     Labels: ['person', 'car', 'bicycle', 'dog', 'cat']
+   ✓ Task created: {'task_id': 1, 'task_name': 'demo_annotation_task', 'status': 'created', 'cvat_url': 'http://localhost:8080/tasks/1/jobs/1'}
+
+4. Auto-labeling workflow...
+   ✓ Auto-annotator initialized
+   ✓ Using YOLOv8n for auto-labeling
+   ✓ Would generate labels for sample images
+
+============================================================
+EXAMPLE 4: YOLO Training Workflow
+============================================================
+
+1. Initializing YOLO trainer...
+   ⚠ YOLOTrainer initialization failed: API request to http://localhost:5000/api/2.0/mlflow/experiments/create failed with exception HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/2.0/mlflow/experiments/create (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7b1a706380a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+   ✓ YOLOTrainer not available (showing demo configuration)
+
+2. Available model configurations:
+   yolov8n: epochs=100, batch_size=16
+   yolov8s: epochs=100, batch_size=16
+   yolov11m: epochs=100, batch_size=8
+
+3. Training configuration:
+     model_type: yolov8n
+     dataset_path: ./sample_data
+     epochs: 10
+     batch_size: 8
+     image_size: 640
+     learning_rate: 0.01
+     augment: True
+     save_period: 5
+     project_name: demo_training
+     experiment_name: demo_experiment
+
+4. Starting training (simulated)...
+   ✓ Would start YOLOv8n training
+   ✓ Dataset: ./sample_data
+   ✓ Epochs: 10
+   ✓ MLflow tracking enabled
+   ✓ Model would be saved to: runs/detect/demo_experiment/weights/best.pt
+
+5. Model export options:
+   Supported formats: ['onnx', 'tensorrt', 'coreml', 'tflite']
+
+============================================================
+EXAMPLE 5: Inference Server
+============================================================
+
+1. Initializing inference server...
+   ✓ InferenceServer initialized
+
+2. Model loading:
+   ✓ Supported formats: ONNX, PyTorch, TensorRT, CoreML
+   ✓ GPU acceleration: CUDA, TensorRT
+   ✓ Optimizations: ONNX Runtime, TensorRT Engine
+
+3. API endpoints:
+   GET /                - Server health and info
+   GET /health          - Detailed health check
+   POST /predict        - Single image prediction
+   POST /predict/file   - File upload prediction
+   POST /predict/batch  - Batch prediction
+   GET /model/info      - Model information
+   GET /metrics         - Server metrics
+
+4. Deployment configuration:
+   host: 0.0.0.0
+   port: 8000
+   workers: 1
+   auto_reload: False
+
+5. Performance characteristics:
+   ✓ Dynamic batching for throughput
+   ✓ GPU acceleration support
+   ✓ ONNX Runtime optimization
+   ✓ Real-time inference
+
+============================================================
+EXAMPLE 6: Object Tracking
+============================================================
+
+1. Initializing object tracker...
+   ✓ Tracker initialized
+   Algorithm: bytetrack
+   Max age: 30 frames
+   Min hits: 3
+
+2. Available tracking algorithms:
+   bytetrack: High-performance motion-based tracking
+   deepsort: Appearance-based tracking with ReID features
+   botsort: BoT-SORT hybrid tracking algorithm
+
+3. Simulating tracking workflow...
+   Frame 1: 2 detections
+   Frame 1: Tracks assigned: [0 1]
+   Frame 2: 2 detections
+   Frame 2: Tracks assigned: [0 1 2 3]
+
+4. Tracking statistics:
+   Algorithm: bytetrack
+   Frames processed: 2
+   Total tracks: 6
+   Current active tracks: 4
+   Average tracks per frame: 3.00
+
+5. Video tracking workflow:
+   ✓ Load detection model
+   ✓ Process video frame by frame
+   ✓ Track objects across frames
+   ✓ Generate tracking visualization
+   ✓ Export tracking results
+
+============================================================
+EXAMPLE 7: REST API Usage
+============================================================
+
+1. API client setup...
+
+2. Health check:
+   ✓ Health check endpoint available
+   ✓ Model status: Loaded
+   ✓ Request count: 42
+
+3. Single image prediction:
+   ✓ Image encoded to base64
+   ✓ Request prepared
+
+4. Batch prediction:
+   ✓ Multiple images support
+   ✓ Concurrent processing
+   ✓ Batch results aggregation
+
+5. Model information:
+   model_type: yolov8n
+   input_shape: [1, 3, 640, 640]
+   output_shape: [1, 84, 8400]
+   num_classes: 80
+   providers: ['CUDAExecutionProvider', 'CPUExecutionProvider']
+
+6. Performance metrics:
+   request_count: 42
+   total_inference_time: 15.6
+   avg_inference_time: 0.37
+   requests_per_second: 2.7
+
+7. API usage example:
+
+# Python client example
+import requests
+
+# Health check
+response = requests.get("http://localhost:8000/health")
+print(response.json())
+
+# Single prediction
+with open("image.jpg", "rb") as f:
+    files = {"file": f}
+    response = requests.post("http://localhost:8000/predict/file", files=files)
+    result = response.json()
+    print(f"Detections: {len(result['detections'])}")
+
+# Batch prediction
+files = [("files", open("img1.jpg", "rb")), ("files", open("img2.jpg", "rb"))]
+response = requests.post("http://localhost:8000/predict/batch", files=files)
+results = response.json()
+
+============================================================
+EXAMPLE 8: Deployment Patterns
+============================================================
+
+1. Local development setup:
+
+# Development configuration
+storage:
+  type: local
+  base_path: ./data
+
+inference:
+  port: 8000
+  batch_size: 1
+  auto_reload: true
+
+mlflow:
+  tracking_uri: http://localhost:5000
+  experiment_name: dev_experiments
+
+2. Production deployment:
+
+# Production configuration
+storage:
+  type: minio
+  base_path: /data
+  minio:
+    endpoint: minio:9000
+    access_key: ${MINIO_ACCESS_KEY}
+    secret_key: ${MINIO_SECRET_KEY}
+
+inference:
+  port: 8000
+  batch_size: 8
+  workers: 4
+  auto_reload: false
+
+mlflow:
+  tracking_uri: postgresql://mlflow:password@postgres:5432/mlflow
+
+tracking:
+  algorithm: bytetrack
+  max_age: 60
+
+3. Kubernetes deployment:
+
+# Kubernetes deployment example
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: viseon-inference
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: viseon-inference
+  template:
+    metadata:
+      labels:
+        app: viseon-inference
+    spec:
+      containers:
+      - name: inference
+        image: viseon:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MODEL_PATH
+          value: /models/best.onnx
+        - name: BATCH_SIZE
+          value: "8"
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+          requests:
+            nvidia.com/gpu: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inference-service
+spec:
+  selector:
+    app: viseon-inference
+  ports:
+  - port: 80
+    targetPort: 8000
+  type: LoadBalancer
+
+4. Docker Compose deployment:
+
+# Docker Compose for full platform
+version: '3.8'
+services:
+  minio:
+    image: minio/minio
+    command: server /data
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+  
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+  
+  mlflow:
+    image: python:3.9
+    command: mlflow server --backend-store-uri postgresql://mlflow:password@postgres:5432/mlflow
+    ports:
+      - "5000:5000"
+  
+  inference:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_PATH: /models/best.onnx
+    depends_on:
+      - minio
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+5. Edge deployment:
+
+# Edge device deployment (NVIDIA Jetson)
+# Use TensorRT optimized models for performance
+
+# Model optimization
+python -c "
+from viseon.training.yolo_trainer import YOLOTrainer
+# trainer = YOLOTrainer(config)  # Requires mlflow dependency
+trainer.export_model(
+    model_path='./models/best.pt',
+    formats=['tensorrt'],
+    imgsz=640
+)
+"
+
+# Edge inference with TensorRT
+python -c "
+from viseon.inference.server import InferenceServer
+# server = InferenceServer({  # Requires onnxruntime dependency
+    'inference': {
+        'batch_size': 1,
+        'max_detections': 50
+    }
+})
+server.load_model('./models/best.engine')  # TensorRT engine
+server.run_server(host='0.0.0.0', port=8000)
+"
+
+================================================================================
+EXAMPLE SUMMARY
+================================================================================
+
+✅ Successfully demonstrated all viseon components:
+   1. ✓ Project creation and data management
+   2. ✓ Detections system and data manipulation
+   3. ✓ CVAT annotation workflow integration
+   4. ✓ YOLO training with experiment tracking
+   5. ✓ High-performance inference server
+   6. ✓ Object tracking algorithms
+   7. ✓ REST API usage and client patterns
+   8. ✓ Production deployment patterns
+
+🎯 Key Benefits Demonstrated:
+   • Complete data sovereignty - everything runs locally
+   • Model-agnostic design - works with any detection model
+   • Production-ready - Docker, Kubernetes, edge deployment
+   • High performance - GPU acceleration, batch processing
+   • Scalable architecture - microservices, horizontal scaling
+
+🚀 Next Steps:
+   1. Install dependencies: pip install -r requirements.txt
+   2. Start services: docker-compose up -d
+   3. Upload your data: platform.upload_data('./your_images')
+   4. Annotate: platform.annotate()
+   5. Train: platform.train('yolov8n')
+   6. Deploy: platform.deploy('./models/best.pt')
+   7. Track: platform.track('video.mp4')
+
+📚 Documentation:
+   • README.md - Complete documentation
+   • examples/ - More usage examples
+   • tests/ - Test suite
+   • deployment/ - Deployment configurations
+
+🌟 viseon - Building the future of sovereign computer vision! 🌟
+(vlm) siya@Siya:~/projects/agentic-vision$ 

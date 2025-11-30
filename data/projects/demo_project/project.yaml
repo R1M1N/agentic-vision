@@ -25,17 +25,47 @@ config:
     algorithm: bytetrack
     max_age: 30
     min_hits: 3
-created_at: /home/siya/projects/agentic-vision
+created_at: /workspace
 description: Demo computer vision project
 name: demo_project
 stats:
   annotations_count: 0
   classes: []
-  total_files: 20
-  total_images: 20
+  total_files: 180
+  total_images: 180
   total_videos: 0
 versions:
-- created_at: /home/siya/projects/agentic-vision
+- created_at: /workspace
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0
+- created_at: /workspace
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0
+- created_at: /workspace
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0
+- created_at: /workspace
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0
+- created_at: /workspace
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0
+- created_at: /workspace
+  description: Initial dataset version
+  files_count: 0
+  name: v1.0
+  path: data/projects/demo_project/versions/v1.0
+- created_at: /workspace
   description: Initial dataset version
   files_count: 0
   name: v1.0

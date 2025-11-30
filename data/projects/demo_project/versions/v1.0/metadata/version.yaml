@@ -5,7 +5,7 @@ config:
   image_size:
   - 640
   - 640
-created_at: /home/siya/projects/agentic-vision
+created_at: /workspace
 description: Initial dataset version
 files: []
 files_count: 0

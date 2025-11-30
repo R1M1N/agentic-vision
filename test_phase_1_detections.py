@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🧪 OpenSupervision Comprehensive Test Suite - FIXED VERSION
+🧪 Viseon Comprehensive Test Suite - FIXED VERSION
 Fast test suite with timeouts for slow components
 """
 
@@ -19,8 +19,8 @@ class TimeoutException(Exception):
 def timeout_handler(signum, frame):
     raise TimeoutException("Test timed out!")
 
-class OpenSupervisionTestSuite:
-    """Complete test suite for OpenSupervision"""
+class ViseonTestSuite:
+    """Complete test suite for Viseon"""
     
     def __init__(self, timeout=30):
         self.passed = 0
@@ -88,7 +88,7 @@ class OpenSupervisionTestSuite:
                 print(f"     └─ {error[:100]}")
 
 # Initialize test suite
-suite = OpenSupervisionTestSuite(timeout=30)
+suite = ViseonTestSuite(timeout=30)
 
 # ============================================
 # PHASE 1: IMPORTS & ENVIRONMENT
@@ -97,15 +97,15 @@ suite = OpenSupervisionTestSuite(timeout=30)
 def test_1_import_core():
     """Test core module imports"""
     print("Importing core modules...")
-    from opensupervision.core.detections import Detections
-    from opensupervision.core.project import Project
+    from viseon.core.detections import Detections
+    from viseon.core.project import Project
     print("✅ Core imports successful")
 
 def test_2_import_training():
     """Test training module imports"""
     print("Importing training modules...")
     try:
-        from opensupervision.training.yolo_trainer import YOLOTrainer
+        from viseon.training.yolo_trainer import YOLOTrainer
         print("✅ Training imports successful")
     except Exception as e:
         print(f"⚠️  Training import warning: {e}")
@@ -114,14 +114,14 @@ def test_2_import_training():
 def test_3_import_tracking():
     """Test tracking module imports"""
     print("Importing tracking modules...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
+    from viseon.tracking.object_tracker import ObjectTracker
     print("✅ Tracking imports successful")
 
 def test_4_import_inference():
     """Test inference module imports"""
     print("Importing inference modules...")
     try:
-        from opensupervision.inference.server import InferenceServer
+        from viseon.inference.server import InferenceServer
         print("✅ Inference imports successful")
     except Exception as e:
         print(f"⚠️  Inference import warning: {e}")
@@ -131,7 +131,7 @@ def test_5_import_annotation():
     """Test annotation module imports"""
     print("Importing annotation modules...")
     try:
-        from opensupervision.annotation.cvat_integration import CVATIntegration
+        from viseon.annotation.cvat_integration import CVATIntegration
         print("✅ Annotation imports successful")
     except Exception as e:
         print(f"⚠️  Annotation import warning: {e}")
@@ -144,7 +144,7 @@ def test_5_import_annotation():
 def test_6_detections_creation():
     """Test Detections object creation"""
     print("Creating Detections object...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     xyxy = np.array([[100, 120, 200, 180], [300, 250, 400, 350]])
     confidence = np.array([0.85, 0.92])
@@ -165,7 +165,7 @@ def test_6_detections_creation():
 def test_7_detections_filtering():
     """Test Detections filtering"""
     print("Testing Detections filtering...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     xyxy = np.array([[100, 120, 200, 180], [300, 250, 400, 350], [50, 50, 100, 100]])
     confidence = np.array([0.85, 0.92, 0.5])
@@ -186,7 +186,7 @@ def test_7_detections_filtering():
 def test_8_detections_merging():
     """Test Detections merging"""
     print("Testing Detections merging...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     det1 = Detections(
         xyxy=np.array([[100, 120, 200, 180]]),
@@ -208,7 +208,7 @@ def test_8_detections_merging():
 def test_9_detections_empty():
     """Test empty Detections"""
     print("Testing empty Detections...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     empty = Detections.empty()
     assert empty.is_empty()
@@ -218,7 +218,7 @@ def test_9_detections_empty():
 def test_10_detections_iou():
     """Test IoU calculation"""
     print("Testing IoU calculation...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     det1 = Detections(
         xyxy=np.array([[100, 100, 200, 200], [300, 300, 400, 400]]),
@@ -244,7 +244,7 @@ def test_10_detections_iou():
 def test_11_project_creation():
     """Test Project creation"""
     print("Creating Project...")
-    from opensupervision.core.project import Project
+    from viseon.core.project import Project
     
     config = {'storage': {'base_path': './test_projects'}}
     project = Project(
@@ -259,7 +259,7 @@ def test_11_project_creation():
 def test_12_project_stats():
     """Test Project statistics"""
     print("Getting Project stats...")
-    from opensupervision.core.project import Project
+    from viseon.core.project import Project
     
     config = {'storage': {'base_path': './test_projects'}}
     project = Project(
@@ -280,7 +280,7 @@ def test_12_project_stats():
 def test_13_tracker_creation():
     """Test ObjectTracker creation"""
     print("Creating ObjectTracker...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
+    from viseon.tracking.object_tracker import ObjectTracker
     
     config = {
         'algorithm': 'bytetrack',
@@ -295,7 +295,7 @@ def test_13_tracker_creation():
 def test_14_tracker_stats():
     """Test Tracker statistics"""
     print("Getting Tracker stats...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
+    from viseon.tracking.object_tracker import ObjectTracker
     
     config = {'algorithm': 'bytetrack'}
     tracker = ObjectTracker(config=config)
@@ -308,8 +308,8 @@ def test_14_tracker_stats():
 def test_15_tracker_update():
     """Test Tracker frame update"""
     print("Testing Tracker frame update...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
-    from opensupervision.core.detections import Detections
+    from viseon.tracking.object_tracker import ObjectTracker
+    from viseon.core.detections import Detections
     
     config = {'algorithm': 'bytetrack'}
     tracker = ObjectTracker(config=config)
@@ -332,7 +332,7 @@ def test_15_tracker_update():
 def test_16_end_to_end_detection():
     """Test end-to-end detection pipeline"""
     print("Testing end-to-end detection pipeline...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     detections = Detections(
         xyxy=np.array([[100, 100, 200, 200], [300, 300, 400, 400]]),
@@ -348,8 +348,8 @@ def test_16_end_to_end_detection():
 def test_17_end_to_end_tracking():
     """Test end-to-end tracking pipeline"""
     print("Testing end-to-end tracking pipeline...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
-    from opensupervision.core.detections import Detections
+    from viseon.tracking.object_tracker import ObjectTracker
+    from viseon.core.detections import Detections
     
     tracker = ObjectTracker(config={'algorithm': 'bytetrack'})
     
@@ -368,8 +368,8 @@ def test_17_end_to_end_tracking():
 def test_18_end_to_end_project():
     """Test end-to-end project workflow"""
     print("Testing end-to-end project workflow...")
-    from opensupervision.core.project import Project
-    from opensupervision.core.detections import Detections
+    from viseon.core.project import Project
+    from viseon.core.detections import Detections
     
     config = {'storage': {'base_path': './test_projects'}}
     project = Project(
@@ -399,7 +399,7 @@ def test_18_end_to_end_project():
 def test_19_detections_performance():
     """Test Detections performance with large datasets"""
     print("Testing Detections performance...")
-    from opensupervision.core.detections import Detections
+    from viseon.core.detections import Detections
     
     n_detections = 1000
     xyxy = np.random.rand(n_detections, 4) * 640
@@ -422,8 +422,8 @@ def test_19_detections_performance():
 def test_20_tracking_performance():
     """Test Tracking performance"""
     print("Testing Tracking performance...")
-    from opensupervision.tracking.object_tracker import ObjectTracker
-    from opensupervision.core.detections import Detections
+    from viseon.tracking.object_tracker import ObjectTracker
+    from viseon.core.detections import Detections
     
     tracker = ObjectTracker(config={'algorithm': 'bytetrack'})
     
@@ -509,7 +509,7 @@ def main():
     # Final status
     print("\n" + "="*70)
     if suite.failed == 0:
-        print("✅ ALL TESTS PASSED! OpenSupervision is ready to use.")
+        print("✅ ALL TESTS PASSED! Viseon is ready to use.")
         print("="*70)
         return 0
     else:

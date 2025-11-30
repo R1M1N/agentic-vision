@@ -1,0 +1,15 @@
+config:
+  annotation_format: yolo
+  augmentation: false
+  image_format: jpg
+  image_size:
+  - 640
+  - 640
+created_at: /workspace/viseon
+description: Initial dataset version
+files: []
+files_count: 0
+include_annotations: false
+include_raw: true
+name: v1.0
+parent_project: demo_project
